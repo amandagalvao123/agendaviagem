@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Agenda — Amanda fora (8 a 22/10)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f5f2;
+    --card:#ffffff;
+    --ink:#26251f;
+    --muted:#8f8b82;
+    --line:#e9e6df;
+    --line-strong:#dcd8cf;
+    --green:#6f9f39;
+    --green-ink:#ffffff;
+    --rosa:#df7d70;
+    --rosa-ink:#ffffff;
+    --holiday:#efece6;
+    --accent:#2f6f3e;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1a1a17;--card:#232320;--ink:#ece9e2;--muted:#9c988e;
+      --line:#332f29;--line-strong:#403b33;--holiday:#2a2823;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1a1a17;--card:#232320;--ink:#ece9e2;--muted:#9c988e;
+    --line:#332f29;--line-strong:#403b33;--holiday:#2a2823;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    background:var(--bg);color:var(--ink);
+    line-height:1.4;padding:28px 20px 48px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto}
+
+  header.top{margin-bottom:26px}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
+  h1{font-size:clamp(26px,5vw,38px);font-weight:800;letter-spacing:-.02em;margin:6px 0 2px;line-height:1.05}
+  .dates{font-size:15px;font-weight:600;color:var(--muted)}
+  .intro{margin-top:14px;font-size:15px;max-width:62ch;color:var(--ink)}
+  .intro strong{font-weight:700}
+
+  .legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:18px;font-size:13px;font-weight:600;color:var(--muted)}
+  .legend .dot{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:6px}
+  .dot.g{background:var(--green)}
+  .dot.r{background:var(--rosa)}
+
+  section.week{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 16px 18px;box-shadow:0 1px 0 var(--line)}
+  .week-label{font-size:13px;font-weight:800;letter-spacing:.02em;color:var(--accent);margin:2px 2px 12px}
+  .scroll{overflow-x:auto}
+
+  .grid{display:grid;gap:0;min-width:520px}
+  .col-time{border-right:1px solid var(--line-strong)}
+  .head{position:sticky;top:0;padding:0 0 8px;text-align:center}
+  .head .dow{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+  .head .dnum{font-size:19px;font-weight:800;letter-spacing:-.01em}
+  .head .tag{display:block;font-size:10px;font-weight:700;color:var(--rosa);margin-top:1px}
+  .col:not(:last-child){border-right:1px solid var(--line)}
+
+  .tlabel{font-size:11px;font-weight:600;color:var(--muted);text-align:right;padding-right:8px;transform:translateY(-7px)}
+  .slot{border-top:1px solid var(--line)}
+
+  .ev{border-radius:8px;padding:5px 7px;margin:2px;overflow:hidden;color:#fff;display:flex;flex-direction:column;justify-content:flex-start}
+  .ev .t{font-size:10px;font-weight:700;opacity:.9;letter-spacing:.01em}
+  .ev .n{font-size:11.5px;font-weight:600;line-height:1.15;margin-top:1px}
+  .ev.g{background:var(--green)}
+  .ev.r{background:var(--rosa)}
+  .holiday-cell{align-items:center;justify-content:center;color:var(--muted);background:var(--holiday);border-radius:8px;margin:2px;font-size:11px;font-weight:700;text-align:center;padding:8px 4px}
+
+  footer{margin-top:26px;font-size:12.5px;color:var(--muted);text-align:center}
+  @media (max-width:560px){ body{padding:22px 12px 40px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="kicker">Assessoria de Presidência · Grupo Ragga</div>
+    <h1>Agenda — Amanda fora</h1>
+    <div class="dates">8 a 22 de outubro de 2026</div>
+    <p class="intro">Rapha, vou estar <strong>fora de 8 a 22/10</strong>. Deixei todas as agendas alinhadas com o time — cada reunião já está com o seu responsável. Abaixo, a agenda completa do período; qualquer ponto, é só falar direto com o responsável de cada uma.</p>
+    <div class="legend">
+      <span><span class="dot g"></span>Agenda do Rapha</span>
+      <span><span class="dot r"></span>Demanda da Amanda (coberta pelo responsável)</span>
+    </div>
+  </header>
+
+  <div id="cal"></div>
+
+  <footer>Tudo também está no Google Agenda, com o time ciente de manter o Rapha posicionado.</footer>
+</div>
+
+<script>
+(function(){
+  var START=9, END=18;                 // 09:00 → 18:00
+  var ROWS=(END-START)*2;              // 30-min slots
+  var ROWPX=30;                        // px per 30-min slot
+
+  function row(t){ var h=Math.floor(t/100), m=t%100; return 2 + (h-START)*2 + (m===30?1:0); }
+  function fmt(t){ var h=Math.floor(t/100), m=t%100; return (h<10?'0':'')+h+':'+(m===0?'00':'30'); }
+
+  var weeks=[
+    { label:'SEMANA 1 · 08 e 09/10',
+      days:[{dow:'Qui',n:8},{dow:'Sex',n:9}],
+      events:[
+        {d:0,s:1200,e:1300,t:'PDCA Performance iFood — Rodolfo',c:'g'},
+        {d:0,s:1400,e:1500,t:'PDCA Palloma — RH/DP',c:'r'},
+        {d:0,s:1500,e:1600,t:'PDCA DP e RH — Rejaine',c:'g'},
+        {d:0,s:1600,e:1700,t:'PDCA RH/RS — Vitória',c:'g'},
+        {d:0,s:1700,e:1800,t:'PDCA DP — Giovanna',c:'g'},
+        {d:1,s:1100,e:1230,t:'Mkt Operacional',c:'g'},
+        {d:1,s:1430,e:1530,t:'Alinhamento Diário — Financeiro',c:'r'}
+      ]},
+    { label:'SEMANA 2 · 12 a 16/10',
+      days:[{dow:'Seg',n:12,holiday:'Feriado · N. Sra. Aparecida'},{dow:'Ter',n:13},{dow:'Qua',n:14},{dow:'Qui',n:15,tag:'Dia do Professor'},{dow:'Sex',n:16}],
+      events:[
+        {d:1,s:900,e:1100,t:'Implantação Teknisa',c:'r'},
+        {d:1,s:1200,e:1300,t:'PDCA Performance iFood — Rodolfo',c:'g'},
+        {d:1,s:1430,e:1530,t:'Alinhamento Diário — Financeiro',c:'r'},
+        {d:1,s:1600,e:1700,t:'PDCA Marketing',c:'g'},
+        {d:1,s:1700,e:1800,t:'PDCA Marcelo',c:'g'},
+        {d:2,s:900,e:1100,t:'Implantação Teknisa',c:'r'},
+        {d:2,s:1100,e:1200,t:'PDCA Johnatan',c:'g'},
+        {d:2,s:1200,e:1300,t:'PDCA Qualidade — Ariadne',c:'g'},
+        {d:2,s:1400,e:1500,t:'PDCA Compras — Maria Eduarda',c:'g'},
+        {d:2,s:1500,e:1600,t:'PDCA Estoque — Maria Vitória',c:'g'},
+        {d:2,s:1600,e:1700,t:'PDCA Caixas/Financeiro — Monalisa',c:'g'},
+        {d:2,s:1700,e:1800,t:'PDCA Central de Delivery',c:'g'},
+        {d:3,s:1200,e:1300,t:'PDCA Performance iFood — Rodolfo',c:'g'},
+        {d:3,s:1400,e:1500,t:'PDCA Palloma — RH/DP',c:'r'},
+        {d:3,s:1500,e:1600,t:'PDCA Rejaine',c:'g'},
+        {d:4,s:1100,e:1230,t:'Mkt Operacional',c:'g'},
+        {d:4,s:1430,e:1530,t:'Alinhamento Diário — Financeiro',c:'r'}
+      ]},
+    { label:'SEMANA 3 · 19 a 22/10',
+      days:[{dow:'Seg',n:19},{dow:'Ter',n:20},{dow:'Qua',n:21},{dow:'Qui',n:22}],
+      events:[
+        {d:0,s:900,e:1100,t:'Implantação Teknisa',c:'r'},
+        {d:0,s:1500,e:1600,t:'PDCA Marcelo',c:'g'},
+        {d:1,s:900,e:1100,t:'Implantação Teknisa',c:'r'},
+        {d:1,s:1200,e:1300,t:'PDCA Performance iFood — Rodolfo',c:'g'},
+        {d:1,s:1430,e:1530,t:'Alinhamento Diário — Financeiro',c:'r'},
+        {d:1,s:1600,e:1700,t:'PDCA Marketing',c:'g'},
+        {d:2,s:1100,e:1200,t:'PDCA Johnatan',c:'g'},
+        {d:2,s:1200,e:1300,t:'PDCA Qualidade — Ariadne',c:'g'},
+        {d:2,s:1400,e:1500,t:'PDCA Compras — Maria Eduarda',c:'g'},
+        {d:2,s:1500,e:1600,t:'PDCA Estoque — Maria Vitória',c:'g'},
+        {d:2,s:1600,e:1700,t:'PDCA Caixas/Financeiro — Monalisa',c:'g'},
+        {d:2,s:1700,e:1800,t:'PDCA Central de Delivery',c:'g'},
+        {d:3,s:1200,e:1300,t:'PDCA Performance iFood — Rodolfo',c:'g'},
+        {d:3,s:1400,e:1500,t:'PDCA Palloma — RH/DP',c:'r'},
+        {d:3,s:1500,e:1600,t:'PDCA Rejaine',c:'g'}
+      ]}
+  ];
+
+  var cal=document.getElementById('cal');
+
+  weeks.forEach(function(wk){
+    var sec=document.createElement('section'); sec.className='week';
+    var lab=document.createElement('div'); lab.className='week-label'; lab.textContent=wk.label; sec.appendChild(lab);
+    var scroll=document.createElement('div'); scroll.className='scroll';
+
+    var grid=document.createElement('div'); grid.className='grid';
+    grid.style.gridTemplateColumns='52px repeat('+wk.days.length+',minmax(120px,1fr))';
+    grid.style.gridTemplateRows='auto repeat('+ROWS+','+ROWPX+'px)';
+
+    // time column
+    var tcol=document.createElement('div'); tcol.className='col-time';
+    tcol.style.gridColumn='1'; tcol.style.gridRow='1 / '+(ROWS+2);
+    grid.appendChild(tcol);
+    for(var h=START;h<=END;h++){
+      var tl=document.createElement('div'); tl.className='tlabel';
+      tl.textContent=(h<10?'0':'')+h+':00';
+      tl.style.gridColumn='1'; tl.style.gridRow=(2+(h-START)*2)+'';
+      grid.appendChild(tl);
+    }
+
+    // day headers + slot lines
+    wk.days.forEach(function(day,di){
+      var col=di+2;
+      var hd=document.createElement('div'); hd.className='head'; hd.style.gridColumn=col; hd.style.gridRow='1';
+      hd.innerHTML='<div class="dow">'+day.dow+'</div><div class="dnum">'+day.n+'</div>'+(day.tag?'<span class="tag">'+day.tag+'</span>':'');
+      grid.appendChild(hd);
+      for(var r=0;r<ROWS;r++){
+        var sl=document.createElement('div'); sl.className='slot'; sl.style.gridColumn=col; sl.style.gridRow=(2+r)+'';
+        grid.appendChild(sl);
+      }
+      if(day.holiday){
+        var hc=document.createElement('div'); hc.className='holiday-cell';
+        hc.style.gridColumn=col; hc.style.gridRow='2 / '+(ROWS+2);
+        hc.textContent=day.holiday;
+        grid.appendChild(hc);
+      }
+    });
+
+    // events
+    wk.events.forEach(function(ev){
+      var el=document.createElement('div'); el.className='ev '+ev.c;
+      el.style.gridColumn=(ev.d+2); el.style.gridRow=row(ev.s)+' / '+row(ev.e);
+      el.innerHTML='<span class="t">'+fmt(ev.s)+'–'+fmt(ev.e)+'</span><span class="n">'+ev.t+'</span>';
+      grid.appendChild(el);
+    });
+
+    scroll.appendChild(grid); sec.appendChild(scroll); cal.appendChild(sec);
+  });
+})();
+</script>
+</body>
+</html>
