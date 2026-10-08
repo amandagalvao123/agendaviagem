@@ -1,9 +1,10 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Agenda — Amanda fora (8 a 22/10)</title>
+<title>Agenda Rapha — Férias Amanda (8 a 22/10)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -28,9 +29,9 @@
   .wrap{max-width:980px;margin:0 auto}
 
   .kicker{font-size:11.5px;font-weight:800;letter-spacing:.16em;color:var(--accent);text-transform:uppercase}
-  h1{font-size:clamp(28px,5.4vw,42px);font-weight:900;letter-spacing:-.025em;line-height:1.02;margin:8px 0 4px}
+  h1{font-size:clamp(26px,5vw,40px);font-weight:900;letter-spacing:-.025em;line-height:1.03;margin:8px 0 4px}
   .dates{font-size:15px;font-weight:700;color:var(--muted)}
-  .intro{margin-top:16px;font-size:15px;max-width:72ch}
+  .intro{margin-top:16px;font-size:15px;max-width:74ch}
   .intro b{font-weight:700}
 
   .legend{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:20px}
@@ -67,50 +68,59 @@
     display:flex;align-items:center;justify-content:center;text-align:center;
     font-size:11.5px;font-weight:700;color:var(--muted);padding:10px;white-space:pre-line}
 
-  footer{margin-top:30px;font-size:13px;color:var(--muted);text-align:center;line-height:1.7}
+  .obs{margin-top:30px;background:var(--card);border:1px solid var(--line-2);border-radius:16px;padding:18px 20px}
+  .obs h2{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--accent);text-transform:uppercase;margin-bottom:10px}
+  .obs p{font-size:13.5px;margin-top:8px} .obs b{font-weight:700}
+  footer{margin-top:22px;font-size:12.5px;color:var(--muted);text-align:center}
   @media (max-width:560px){body{padding:26px 12px 44px}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="kicker">Assessoria de Presidência · Grupo Ragga</div>
-  <h1>Agenda — Amanda fora</h1>
+  <h1>Agenda do Rapha — Férias da Amanda</h1>
   <div class="dates">8 a 22 de outubro de 2026</div>
-  <p class="intro">Rapha, vou estar <b>fora de 8 a 22/10</b>. Cada reunião já está com o seu responsável. As agendas em rosa eram minhas e seguem acontecendo <b>em paralelo</b>, tocadas por quem responde por cada uma — Teknisa (Marcelo), Johnatan, Palloma (RH/DP) e Financeiro (Larissa).</p>
+  <p class="intro">Rapha, estou <b>de férias de 8 a 22/10</b>. Cada reunião já está com o seu responsável. As agendas em rosa eram minhas e seguem acontecendo <b>em paralelo</b>, tocadas por quem responde por cada uma — Teknisa (Marcelo), Johnatan (reporta no grupo/TI), Palloma (RH/DP) e Financeiro (Larissa). Não são do Rapha.</p>
   <div class="legend">
     <span class="lg"><span class="sw g"></span>Agenda do Rapha</span>
-    <span class="lg"><span class="sw r"></span>Agenda da Amanda — segue com o responsável</span>
+    <span class="lg"><span class="sw r"></span>Agenda da Amanda — coberta pelo responsável</span>
   </div>
   <div id="cal"></div>
-  <footer>Agendas fixas até o fim do ano: Compras e Estoque (M. Eduarda / M. Vitória), Caixas (Monalisa), DP (Giovanna) e RH/RS (Vitória).<br>Tudo também está no Google Agenda, com o time ciente de manter o Rapha posicionado.</footer>
+  <div class="obs">
+    <h2>📌 Observações</h2>
+    <p>• <b>Amanda de férias de 08 a 22/10</b> — toda a agenda roda sem ela, cada reunião já com o seu responsável. As que eram dela seguem em paralelo: Implantação Teknisa (Marcelo), PDCA Johnatan (reporta no grupo/TI), PDCA Palloma (RH/DP) e Alinhamento Diário Financeiro (Larissa).</p>
+    <p>• As agendas de <b>Compras e Estoque</b> (Maria Eduarda e Maria Vitória), <b>Caixas</b> (Monalisa), <b>DP</b> (Giovanna) e <b>RH/RS</b> (Vitória) ficam <b>fixas até o fim do ano</b>. Se achar que ainda não é o momento, me avisa que eu retiro.</p>
+  </div>
+  <footer>Tudo também está no Google Agenda, com o time ciente de manter o Rapha posicionado.</footer>
 </div>
 <script>
 (function(){
   var START=9,END=18,ROWS=(END-START)*2,ROWPX=36;
   function row(t){var h=Math.floor(t/100),m=t%100;return 2+(h-START)*2+(m===30?1:0);}
   function fmt(t){var h=Math.floor(t/100),m=t%100;return (h<10?'0':'')+h+':'+(m===0?'00':'30');}
-  var TEK='Implantação Teknisa · Marcelo', FIN='Alinhamento Diário — Financeiro · Larissa',
-      JOH='PDCA Johnatan · Johnatan', PAL='PDCA Palloma — RH/DP · Palloma',
-      IFO='PDCA Perf. iFood — Rodolfo', QUA='PDCA Qualidade — Ariadne', CMV='PDCA CMV — Gerentes',
-      CE='PDCA Compras e Estoque', CX='PDCA Caixas/Fin. — Monalisa', MKT='Mkt Operacional';
+  var TEK='Implantação Teknisa · Marcelo', FIN='Alinhamento Financeiro interno · Larissa',
+      JOH='PDCA Johnatan · reporta no grupo/TI', PAL='PDCA Palloma · RH/DP',
+      IFO='PDCA Perf. iFood · Rodolfo', QUA='PDCA Qualidade · Ariadne', CMV='PDCA CMV · Gerentes',
+      CE='PDCA Compras e Estoque', CX='PDCA Caixas/Fin. · Monalisa', MKT='Mkt Operacional · Carol',
+      MKTG='PDCA Marketing · Carol';
   var W=[
     {label:'Semana 1 · 08 e 09/10',days:[{d:'Qui',n:8},{d:'Sex',n:9}],ev:[
       [0,1200,1300,IFO,'g'],[0,1400,1500,QUA,'g'],[0,1500,1600,CMV,'g'],[0,1600,1700,CE,'g'],[0,1700,1800,CX,'g'],
       [1,1100,1230,MKT,'g'],[1,1400,1500,FIN,'r']]},
     {label:'Semana 2 · 12 a 16/10',days:[{d:'Seg',n:12,holiday:'Feriado\nN. Sra. Aparecida'},{d:'Ter',n:13},
       {d:'Qua',n:14},{d:'Qui',n:15,tag:'Dia do Professor'},{d:'Sex',n:16}],ev:[
-      [1,900,1100,TEK,'r'],[1,1200,1300,IFO,'g'],[1,1400,1500,FIN,'r'],[1,1600,1700,'PDCA Marketing','g'],[1,1700,1800,'PDCA Marcelo','g'],
+      [1,900,1100,TEK,'r'],[1,1200,1300,IFO,'g'],[1,1400,1500,FIN,'r'],[1,1600,1700,MKTG,'g'],[1,1700,1800,'PDCA Marcelo','g'],
       [2,900,1100,TEK,'r'],[2,1100,1200,JOH,'r'],[2,1200,1300,PAL,'r'],
-      [2,1400,1500,'PDCA DP e RH — Rejaine','g'],[2,1500,1600,'PDCA RH/RS — Vitória','g'],
-      [2,1600,1700,'PDCA DP — Giovanna','g'],[2,1700,1800,'PDCA Central de Delivery','g'],
+      [2,1400,1500,'PDCA DP e RH · Rejaine','g'],[2,1500,1600,'PDCA RH/RS · Vitória','g'],
+      [2,1600,1700,'PDCA DP · Giovanna','g'],[2,1700,1800,'PDCA Central de Delivery','g'],
       [3,1200,1300,IFO,'g'],[3,1400,1500,QUA,'g'],[3,1500,1600,CMV,'g'],[3,1600,1700,CE,'g'],[3,1700,1800,CX,'g'],
       [4,1100,1230,MKT,'g'],[4,1400,1500,FIN,'r']]},
     {label:'Semana 3 · 19 a 22/10',days:[{d:'Seg',n:19},{d:'Ter',n:20},{d:'Qua',n:21},{d:'Qui',n:22}],ev:[
       [0,900,1100,TEK,'r'],[0,1500,1600,'PDCA Marcelo','g'],
-      [1,900,1100,TEK,'r'],[1,1200,1300,IFO,'g'],[1,1400,1500,FIN,'r'],[1,1600,1700,'PDCA Marketing','g'],
+      [1,900,1100,TEK,'r'],[1,1200,1300,IFO,'g'],[1,1400,1500,FIN,'r'],[1,1600,1700,MKTG,'g'],
       [2,1100,1200,JOH,'r'],[2,1200,1300,PAL,'r'],
-      [2,1400,1500,'PDCA DP e RH — Rejaine','g'],[2,1500,1600,'PDCA RH/RS — Vitória','g'],
-      [2,1600,1700,'PDCA DP — Giovanna','g'],[2,1700,1800,'PDCA Central de Delivery','g'],
+      [2,1400,1500,'PDCA DP e RH · Rejaine','g'],[2,1500,1600,'PDCA RH/RS · Vitória','g'],
+      [2,1600,1700,'PDCA DP · Giovanna','g'],[2,1700,1800,'PDCA Central de Delivery','g'],
       [3,1200,1300,IFO,'g'],[3,1400,1500,QUA,'g'],[3,1500,1600,CMV,'g'],[3,1600,1700,CE,'g'],[3,1700,1800,CX,'g']]}
   ];
   var cal=document.getElementById('cal');
@@ -145,3 +155,5 @@
 </script>
 </body>
 </html>
+
+</body></html>
